@@ -11,5 +11,5 @@ int main() {
     //Podemos asegurar que setuid esta activado en este fichero cuando
     //getuid y geteuid son diferentes.
 
-    return 1;
+    return 0;
 }

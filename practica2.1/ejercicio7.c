@@ -12,7 +12,7 @@ int main() {
     num = pathconf("/", _PC_LINK_MAX);
     if (num == -1 && errno > 0) {
         perror("Error_pathconfig");
-        return 0;
+        return 1;
     }
     else {
         printf("Enlaces maximos : %ld\n", num);
@@ -21,7 +21,7 @@ int main() {
     num = pathconf("/", _PC_PATH_MAX);
     if (num == -1 && errno > 0) {
         perror("Error_pathconfig");
-        return 0;
+        return 1;
     }
     else {
         printf("Maxima longitud ruta : %ld\n", num);
@@ -30,11 +30,11 @@ int main() {
     num = pathconf("/", _PC_NAME_MAX);
     if (num == -1 && errno > 0) {
         perror("Error_pathconfig");
-        return 0;
+        return 1;
     }
     else {
         printf("Longitud de titulo maxima : %ld\n", num);
     }
 
-    return 1;
+    return 0;
 }

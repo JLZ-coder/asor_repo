@@ -17,5 +17,5 @@ int main() {
     printf("HOME: %s \n", info->pw_dir);
     printf("Descripcion: %s \n", info->pw_gecos);
 
-    return 1;
+    return 0;
 }

@@ -10,5 +10,5 @@ int main() {
         printf("%d : %s \n", i, strerror(i));
     }
 
-   return 1;
+   return 0;
 }

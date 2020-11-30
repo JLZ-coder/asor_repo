@@ -9,5 +9,5 @@ int main() {
        perror("Error_setuid");
    }
 
-   return 1;
+   return 0;
 }

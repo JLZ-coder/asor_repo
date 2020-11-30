@@ -13,7 +13,7 @@ int main() {
     num = sysconf(_SC_ARG_MAX);
     if (num == -1 && errno > 0) {
         perror("Error_sysconfig");
-        return 0;
+        return 1;
     }
     else {
         printf("Argumentos maximos : %ld\n", num);
@@ -22,7 +22,7 @@ int main() {
     num = sysconf(_SC_CHILD_MAX);
     if (num == -1 && errno > 0) {
         perror("Error_sysconfig");
-        return 0;
+        return 1;
     }
     else {
         printf("Numero maximo de hijos : %ld\n", num);
@@ -31,11 +31,11 @@ int main() {
     num = sysconf(_SC_OPEN_MAX);
     if (num == -1 && errno > 0) {
         perror("Error_sysconfig");
-        return 0;
+        return 1;
     }
     else {
         printf("Numero maximo de ficheros por proceso : %ld\n", num);
     }
 
-    return 1;
+    return 0;
 }
