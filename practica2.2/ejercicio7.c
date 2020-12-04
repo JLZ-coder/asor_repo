@@ -1,39 +1,19 @@
-#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <errno.h>
 
-
 int main() {
 
-    long num;
+    umask(027);
 
-    errno = 0;
+    int fd;
+    fd = open("prueba_7.txt", O_CREAT, 0777);
 
-    num = pathconf("/", _PC_LINK_MAX);
-    if (num == -1 && errno > 0) {
-        perror("Error_pathconfig");
+    if (fd == -1) {
+        perror("Error_open");
         return 1;
-    }
-    else {
-        printf("Enlaces maximos : %ld\n", num);
-    }
-
-    num = pathconf("/", _PC_PATH_MAX);
-    if (num == -1 && errno > 0) {
-        perror("Error_pathconfig");
-        return 1;
-    }
-    else {
-        printf("Maxima longitud ruta : %ld\n", num);
-    }
-
-    num = pathconf("/", _PC_NAME_MAX);
-    if (num == -1 && errno > 0) {
-        perror("Error_pathconfig");
-        return 1;
-    }
-    else {
-        printf("Longitud de titulo maxima : %ld\n", num);
     }
 
     return 0;
