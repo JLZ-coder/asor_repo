@@ -1,23 +1,17 @@
-#include <sys/utsname.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <errno.h>
-#include <string.h>
-
 
 int main() {
+    int fd;
+    fd = open("prueba_5.txt", O_CREAT, 0645);
 
-    struct utsname buf;
+    if (fd == -1) {
+        perror("Error_open");
+        return 1;
+    }
 
-    if (uname(&buf) == -1) {
-    	perror("Error_uname");
-    }
-    else {
-        printf("%s\n", buf.sysname);
-        printf("%s\n", buf.nodename);
-        printf("%s\n", buf.release);
-        printf("%s\n", buf.version);
-        printf("%s\n", buf.machine);
-    }
-    
-   return 0;
+    return 0;
 }
