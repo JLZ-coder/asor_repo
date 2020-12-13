@@ -18,37 +18,35 @@ int main(int argc, char **argv) {
     int s;
     struct stat buf;
 
-    s = stat(argv[1], &buf);
+    s = lstat(argv[1], &buf);
 
     if (s == -1) {
         perror("Error_stat");
         return 1;
     }
 
-
-    //Major y minor
     printf("Major y Minor: %i , %i\n", major(buf.st_dev), minor(buf.st_dev));
 
 
-    //I-nodo
     printf("I-nodo: %li\n", buf.st_ino);
 
 
-    //Tipo de fichero
     printf("Tipo de fichero: ");
 
-    switch (buf.st_mode & S_IFMT) {
-	    case S_IFDIR:  printf("Directorio\n");               break;
-	    case S_IFLNK:  printf("Enlace simbolico\n");                 break;
-	    case S_IFREG:  printf("Fichero regular\n");            break;
-	    default:       printf("unknown?\n");                break;
+    if (S_ISDIR(buf.st_mode)) {
+        printf("Directorio\n");
+    }
+    else if (S_ISLNK(buf.st_mode)) {
+        printf("Enlace simbolico\n"); 
+    }
+    else if (S_ISREG(buf.st_mode)) {
+        printf("Fichero regular\n"); 
+    }
+    else {
+        printf("unknown?\n");
     }
 
-    //Ultimo acceso
 	printf("Ultimo acceso: %s\n", ctime(&buf.st_atime));
-
-    //mtime se actualiza cuando se modifica el contenido del archivo o cuando es creado
-    //ctime se actualiza cuando el archivo cambia de permisos, de propietario, de numero de links,etc
 
     return 0;
 }
