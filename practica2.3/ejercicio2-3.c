@@ -36,5 +36,7 @@ int main(int argc, char **argv) {
 
    	printf("Prioridad de %i\n", param.sched_priority);
 
+    //Respondiendo al ejercicio3, si que se heredan los atributos de planificacion
+
     return 0;
 }
