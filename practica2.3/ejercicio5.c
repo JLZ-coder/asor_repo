@@ -32,7 +32,10 @@ int main(int argc, char **argv) {
     if (getcwd(buf, 1000) == NULL) {
         perror("Error_getcwd");
         return 1;
+        free(buf);
     }
+
+    free(buf);
 
     printf("En el Directorio: %s\n", buf);
 
