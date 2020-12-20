@@ -2,6 +2,7 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 
 int main(int argc, char **argv) {
@@ -11,33 +12,19 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    int len = 0;
-    int i;
-
-    for (i = 1; i < argc; i++) {
-        len += strlen(argv[i]) + 1;
-    }
-
-    len += 1;
-
-    char *command = malloc(sizeof(char) * len);
-
-    for (i = 1; i < argc; i++) {
-        strcat(command, argv[i]);
-        strcat(command, " ");
-    }
 
     int s;
-    s = system(command);
+    s = execvp(argv[1], &argv[1]);
 
     if (s == -1) {
-        perror("Error_system");
+        perror("Error_execvp");
         return 1;
     }
 
     printf("El comando terminó de ejecutarse.\n");
 
-    //La cadena se imprime una vez terminado el comando que se ha pasado a system
+    //Aqui no se ejecuta el printf del ultimo mensaje. En este caso se reemplaza el proceso por 
+    //uno nuevo, el que le digamos por los argumentos.
 
     return 0;
 }

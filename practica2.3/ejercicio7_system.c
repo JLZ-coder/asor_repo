@@ -35,9 +35,13 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    free(command);
+
     printf("El comando terminó de ejecutarse.\n");
 
-    //La cadena se imprime una vez terminado el comando que se ha pasado a system
+    //La cadena se imprime una vez terminado el comando que se ha pasado a system. System crea
+    //un proceso hijo para ejecutar el comando, una vez termina en proceso padre sigue con la
+    //ejecucion.
 
     return 0;
 }
