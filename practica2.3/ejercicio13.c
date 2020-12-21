@@ -14,7 +14,8 @@ void handler(int sig) {
     }
 }
 
-//Como usar sigsuspend cuando hay un temporizador de por medio
+//No he usado sigsuspend, ya que aqui se necesita un temporizador para saber cuando borrar el ejecutable
+//y usar la funcion suspenderia la cuenta atras hasta que se recibiera la señal SIGUSR1
 
 int main(int argc, char **argv) {
 
