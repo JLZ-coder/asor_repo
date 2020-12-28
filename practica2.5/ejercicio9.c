@@ -7,6 +7,16 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include <sys/wait.h>
+
+void funcion() {
+    pid_t pid;
+    int stat;
+
+    pid = wait(&stat);
+
+    printf("[PID:%d] exited.\n", pid);
+}
 
 int main(int argc, char **argv) {
 
@@ -60,6 +70,8 @@ int main(int argc, char **argv) {
     s = 0;
     pid_t pid;
 
+    signal (SIGCHLD, funcion);
+
     while(1) {
         sd = accept(sfd,(struct sockaddr *) &addr, &addr_len);
 
@@ -88,7 +100,6 @@ int main(int argc, char **argv) {
                     send(sd, buf, nread, 0);
                 }
                 printf("Conexion terminada\n");
-                
                 break;
             default:
                 close(sd);
