@@ -83,14 +83,14 @@ int main(int argc, char **argv) {
                 size = strftime(c, 50, "%I:%M:%S %p", t);
                 c[size] = '\0';
                 
-                sendto(sfd, c, size + 1, 0, (struct sockaddr *) &addr, addr_len)
+                sendto(sfd, c, size + 1, 0, (struct sockaddr *) &addr, addr_len);
                 
                 break;
             case 'd':
                 size = strftime(c, 50, "%Y-%m-%d", t);
                 c[size] = '\0';
                 
-                sendto(sfd, c, size + 1, 0, (struct sockaddr *) &addr, addr_len)
+                sendto(sfd, c, size + 1, 0, (struct sockaddr *) &addr, addr_len);
 
                 break;
             case 'q':
